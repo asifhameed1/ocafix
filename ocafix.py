@@ -70,6 +70,8 @@ date(2019,4,15).isocalendar()[1],
 date(2019,4,22).isocalendar()[1],
 ]
 
+# Define the two halves of the season
+
 firstDateOfFirstHalf=date(2018,10,1)
 lastDateOfFirstHalf=date(2018,12,21)
 firstDateOfSecondHalf=date(2019,1,7)

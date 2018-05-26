@@ -79,7 +79,7 @@ excludedWeeks = [
 
 # Define the two halves of the season
 
-firstDateOfFirstHalf=date(2018,10,1)
+firstDateOfFirstHalf=date(2018,10,9)
 lastDateOfFirstHalf=date(2018,12,21)
 
 firstDateOfSecondHalf=date(2019,1,7)
@@ -193,7 +193,7 @@ def attemptFixtures():
              seasonLength = (lastDateofHalf - firstDateOfHalf).days
 
              fixtureOK = False;
-             for attempt in range(1,30):
+             for attempt in range(1,60):
                 candidateDate = firstDateOfHalf + timedelta((homeClubNight - firstDayOfHalf) % 7)
                 if homeClub != awayClub: 
                    randomWeekShift = 7 * int(random.randint(0,seasonLength - 7) / 7)    # Add a random shift of a whole number of weeks
@@ -211,7 +211,7 @@ def attemptFixtures():
 #---------------------------------------------------------------------------------------
 
 def main():
-    for j in range(0,300):
+    for j in range(0,900):
         fillFixtures()
         itWorked = attemptFixtures()
         if itWorked:

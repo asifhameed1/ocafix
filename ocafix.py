@@ -109,7 +109,7 @@ def isFixtureOK ( pdate, pdivision, phomeClub, phomeTeamNumber, pawayClub, paway
         fdiv, fhomeClub, fhomeTeamNumber, fawayClub, fawayTeamNumber,fhomeClubNight = fixture
         fdate = fixtureDate[fhomeClub + str(fhomeTeamNumber) + fawayClub + str(fawayTeamNumber)]
 
-        if fhomeClub == 'Cowley' and fdate is not None and fdate == pdate:
+        if fhomeClub == 'Cowley' and fdate == pdate:
            cowleyHomeFixturesOnThisDay += 1
 
 # Check that there aren't already three Cowley home fixtures on this day

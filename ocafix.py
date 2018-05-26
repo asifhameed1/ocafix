@@ -81,6 +81,7 @@ excludedWeeks = [
 
 firstDateOfFirstHalf=date(2018,10,1)
 lastDateOfFirstHalf=date(2018,12,21)
+
 firstDateOfSecondHalf=date(2019,1,7)
 lastDateOfSecondHalf=date(2019,5,30)
 
@@ -210,8 +211,9 @@ def main():
        for fixture in fixtures:
            fdiv, fhomeClub, fhomeTeamNumber, fawayClub, fawayTeamNumber,fhomeClubNight = fixture
            fdate = fixtureDate[fhomeClub + str(fhomeTeamNumber) + fawayClub + str(fawayTeamNumber)]
-           print(fdate.strftime('%Y-%m-%d (%a)')+" "+fdiv+" "+fhomeClub+str(fhomeTeamNumber)+" v "+fawayClub + str(fawayTeamNumber))
-       pickle.dump( [fixtures,fixtureDate] , open( "fixtures.pick", "wb" ) )
+           print(fdate.strftime('%Y-%m-%d (%a)') +" " + fdiv + " " + fhomeClub + str(fhomeTeamNumber)\
+                  + " v " + fawayClub + str(fawayTeamNumber))
+       pickle.dump( [fixtures,fixtureDate] , open( "fixtures.pickle", "wb" ) )
     else:
        print("Failed to find a solution",file=sys.stderr)
 

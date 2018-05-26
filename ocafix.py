@@ -192,7 +192,7 @@ def fillFixtures():
 
    random.shuffle(fixtures)
 
-# If the fixture is between two teams from the same club, out them at the beginning
+# If the fixture is between two teams from the same club, put them at the beginning
 # of the list so that they can be scheduled for the start of the season halves.
 
 # Find the inter club fixtures

@@ -53,7 +53,7 @@ teams = [
 ['Didcot',4,0],
 ['Oxford University',3,3],
 ['Abingdon',1,0],
-['witney',4,0],
+['Witney',4,0],
 ['Bicester',2,0],
 ['Wantage',2,0],
 ['Cowley',6,3],
@@ -114,8 +114,14 @@ def isFixtureOK ( pdate, pdivision, phomeClub, phomeTeamNumber, pawayClub, paway
 
 # Check that there aren't already three Cowley home fixtures on this day
         
-        if phomeClub == 'Cowley' and cowleyHomeFixturesOnThisDay >= 3:
-           return False
+           if cowleyHomeFixturesOnThisDay >= 3:
+              return False
+
+# Check that there isn't already a Cowley home fixtures on this day
+# and it is the third Monday of the week
+        
+           if 14 < pdate.day < 22 and cowleyHomeFixturesOnThisDay >= 1:
+              return False
 
         if fdate is not None:
            fweek = fdate.isocalendar()[1]
@@ -211,7 +217,7 @@ def attemptFixtures():
 #---------------------------------------------------------------------------------------
 
 def main():
-    for j in range(0,900):
+    for j in range(0,3000):
         fillFixtures()
         itWorked = attemptFixtures()
         if itWorked:

@@ -68,6 +68,14 @@ date(2019,4,8),        # Peter Well's Simultaneous
 date(2019,2,4),        # Kidlington Hangover
 ]
 
+universityTerms = [
+
+[ date(2018,10,7), date(2018,12,1) ],   # Michaelmas
+[ date(2019,1,13), date(2019,3,9) ],    # Hilary
+[ date(2019,4,28), date(2019,6,22) ],   # Trinity
+
+]
+
 # Weeks with the following days in them will be excluded from fixtures
 
 excludedWeeks = [
@@ -104,6 +112,17 @@ def isFixtureOK ( pdate, pdivision, phomeClub, phomeTeamNumber, pawayClub, paway
 
     if pweek in excludedWeeks:
        return False
+
+# Check that University matches are played in term time
+
+    if  phomeClub == 'Oxford University' or pawayClub == 'Oxford University':
+           inTermTime = False
+           for term in universityTerms:
+               start, finish = term
+               if start <= pdate <= finish:
+                  inTermTime = True
+           if not inTermTime:
+              return False;
 
     for fixture in fixtures:
         fdiv, fhomeClub, fhomeTeamNumber, fawayClub, fawayTeamNumber,fhomeClubNight = fixture

@@ -17,6 +17,6 @@ The code is wriiten in Python3 and uses standard libraries.
 6. No team plays more than one match in the same week
 7. No fixtures scheduled for the day after Kidlington
 8. No fixtures scheduled for the day of the Peter Well's simultaneous event
-9. All University matches are scheduled in term time                                   - YET TO BE DONE
+9. All University matches are scheduled in term time
 10. Cowley does not have more than 3 fixtures at home on the same day
 11. Cowley does not have more than 1 fixtures at home on the third Monday of the month

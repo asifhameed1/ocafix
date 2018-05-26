@@ -61,13 +61,20 @@ teams = [
 
 ]
 
+# Following days will be excluded from fixtures
+
+excludedDays = [
+date(2019,4,8),        # Peter Well's Simultaneous
+date(2019,2,4),        # Kidlington Hangover
+]
+
 # Weeks with the following days in them will be excluded from fixtures
 
 excludedWeeks = [
-date(2019,4,1).isocalendar()[1],
-date(2019,4,8).isocalendar()[1],
-date(2019,4,15).isocalendar()[1],
-date(2019,4,22).isocalendar()[1],
+#date(2019,4,1).isocalendar()[1],
+#date(2019,4,8).isocalendar()[1],
+#date(2019,4,15).isocalendar()[1],
+#date(2019,4,22).isocalendar()[1],
 ]
 
 # Define the two halves of the season
@@ -85,6 +92,13 @@ fixtureDate = {}  # key is homeClub.HomeTeamNumber.awayClub.awayTeamNumber
 def isFixtureOK ( pdate, pdivision, phomeClub, phomeTeamNumber, pawayClub, pawayTeamNumber,phomeClubNight):
 
     pweek = pdate.isocalendar()[1]
+
+# Check that proposed fixture is not an excluded day
+
+    if pdate in excludedDays:
+       return False
+
+# Check that proposed fixture is not in an excluded week
 
     if pweek in excludedWeeks:
        return False

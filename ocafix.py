@@ -137,7 +137,7 @@ def isFixtureOK ( pdate, pdivision, phomeClub, phomeTeamNumber, pawayClub, paway
               return False
 
 # Check that there isn't already a Cowley home fixtures on this day
-# and it is the third Monday of the week
+# if it is the third Monday of the week (Stamp Club clash)
         
            if 14 < pdate.day < 22 and cowleyHomeFixturesOnThisDay >= 1:
               return False
@@ -218,7 +218,7 @@ def attemptFixtures():
              seasonLength = (lastDateofHalf - firstDateOfHalf).days
 
              fixtureOK = False;
-             for attempt in range(1,60):
+             for attempt in range(1,100):
                 candidateDate = firstDateOfHalf + timedelta((homeClubNight - firstDayOfHalf) % 7)
                 if homeClub != awayClub: 
                    randomWeekShift = 7 * int(random.randint(0,seasonLength - 7) / 7)    # Add a random shift of a whole number of weeks
@@ -236,7 +236,7 @@ def attemptFixtures():
 #---------------------------------------------------------------------------------------
 
 def main():
-    for j in range(0,3000):
+    for j in range(0,10000):
         fillFixtures()
         itWorked = attemptFixtures()
         if itWorked:

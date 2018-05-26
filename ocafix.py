@@ -87,7 +87,7 @@ excludedWeeks = [
 
 # Define the two halves of the season
 
-firstDateOfFirstHalf=date(2018,10,9)
+firstDateOfFirstHalf=date(2018,10,8)
 lastDateOfFirstHalf=date(2018,12,21)
 
 firstDateOfSecondHalf=date(2019,1,7)
@@ -187,8 +187,27 @@ def fillFixtures():
                  fixture = ["Div" + str(division + 1), homeClub, homeTeamNumber, awayClub, awayTeamNumber, homeTeamNight]
                  fixtures.append(fixture)
                  fixtureDate[homeClub + str(homeTeamNumber) + awayClub + str(awayTeamNumber)] = None
+
+#  Randomize the order so that the next iteration will be different
+
    random.shuffle(fixtures)
 
+# If the fixture is between two teams from the same club, out them at the beginning
+# of the list so that they can be scheduled for the start of the season halves.
+
+# Find the inter club fixtures
+
+   interClubFixtures = []
+   for fixture in fixtures:
+       fdiv, homeClub, homeTeamNumber, awayClub, awayTeamNumber,homeClubNight = fixture
+       if homeClub == awayClub:
+          interClubFixtures.append(fixture)
+
+# Then put the inter club fixtures at the top of the fixture list
+
+   for fixture in interClubFixtures:
+       fixtures.remove(fixture)
+       fixtures.insert(0, fixture)
 #---------------------------------------------------------------------------------------
 
 def attemptFixtures():
@@ -221,9 +240,12 @@ def attemptFixtures():
              for attempt in range(1,100):
                 candidateDate = firstDateOfHalf + timedelta((homeClubNight - firstDayOfHalf) % 7)
                 if homeClub != awayClub: 
-                   randomWeekShift = 7 * int(random.randint(0,seasonLength - 7) / 7)    # Add a random shift of a whole number of weeks
+                   # Add a random shift of a whole number of weeks
+                   randomWeekShift = 7 * int(random.randint(0,seasonLength - 7) / 7) 
                    candidateDate += timedelta(randomWeekShift)
-                fixtureOK = isFixtureOK ( candidateDate, fdiv, homeClub, homeTeamNumber, awayClub, awayTeamNumber,homeClubNight )
+
+                fixtureOK = isFixtureOK ( candidateDate, fdiv, homeClub, homeTeamNumber, awayClub, \
+                                          awayTeamNumber,homeClubNight )
                 if fixtureOK:
                    break 
              if not fixtureOK:

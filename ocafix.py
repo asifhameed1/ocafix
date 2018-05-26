@@ -93,6 +93,7 @@ fixtureDate = {}  # key is homeClub.HomeTeamNumber.awayClub.awayTeamNumber
 def isFixtureOK ( pdate, pdivision, phomeClub, phomeTeamNumber, pawayClub, pawayTeamNumber,phomeClubNight):
 
     pweek = pdate.isocalendar()[1]
+    cowleyHomeFixturesOnThisDay = 0
 
 # Check that proposed fixture is not an excluded day
 
@@ -107,7 +108,15 @@ def isFixtureOK ( pdate, pdivision, phomeClub, phomeTeamNumber, pawayClub, paway
     for fixture in fixtures:
         fdiv, fhomeClub, fhomeTeamNumber, fawayClub, fawayTeamNumber,fhomeClubNight = fixture
         fdate = fixtureDate[fhomeClub + str(fhomeTeamNumber) + fawayClub + str(fawayTeamNumber)]
+
+        if fhomeClub == 'Cowley' and fdate is not None and fdate == pdate:
+           cowleyHomeFixturesOnThisDay += 1
+
+# Check that there aren't already three Cowley home fixtures on this day
         
+        if phomeClub == 'Cowley' and cowleyHomeFixturesOnThisDay >= 3:
+           return False
+
         if fdate is not None:
            fweek = fdate.isocalendar()[1]
 

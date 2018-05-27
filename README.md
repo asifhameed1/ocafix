@@ -2,7 +2,7 @@
 
 ocafix is a tool to schedule OCA fixtures.  After the initial parameters are defined, it then performs
 Monte-Carlo simulations until it finds a fixture list that meets the constraints.  The fixtures are
-then written stdout.  A python pickle file (fixtures.pickle) is also created so that further analysis
+then written to stdout.  A python pickle file (fixtures.pickle) is also created so that further analysis
 can be undertaken.
 
 The code is wriiten in Python3 and uses standard libraries.
@@ -17,7 +17,11 @@ The code is wriiten in Python3 and uses standard libraries.
 6. Teams from the same club play each other at the beginning of the season halves
 7. No team plays more than one match in the same week
 8. No fixtures scheduled for the day after Kidlington
-9. No fixtures scheduled for the day of the Peter Well's simultaneous event
-10. All University matches are scheduled in term time
-11. Cowley does not have more than 3 fixtures at home on the same day
-12. Cowley does not have more than 1 fixtures at home on the third Monday of the month
+9. No fixtures scheduled for the day after The Witney Congress
+10. No fixtures scheduled for the day of the Peter Well's simultaneous event
+11. No fixtures scheduled for the day of the Cowley Blitz
+12. Fixtures between teams from the same club are scheduled at the begining of each half of the season
+13. All University matches are scheduled in term time
+14. Clubs do not have more than a specified number of fixtures at home on the same day (currently 3 for all clubs)
+15. Cowley does not have more than 1 fixtures at home on the third Monday of the month
+16. Witney does not have adjacent teams playing on the same night

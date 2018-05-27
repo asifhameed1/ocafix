@@ -1,25 +1,26 @@
 #!/usr/bin/env python3
 
+# Author David.Robson
+# 2018-05-24 Created
+
 from datetime import date,timedelta
 import pickle
 import random
 import sys
 
+maxConcurrentHomeMatchesPerClub = {
 
-maxHomeMatchesPerClub = {
-
-'Oxford University' : 2,
-'Witney' : 3,
-'City' : 2,
-'Cowley' : 2,
-'Witney' : 2,
-'Banbury' : 2,
-'Didcot' : 2,
-'Bicester' : 2,
-'Wantage' : 2,
-'Cumnor' : 2,
-'MCS/B' : 3,
-'Abingdon' : 2,
+'University' : 3,
+'Witney'     : 3,
+'City'       : 3,
+'Cowley'     : 3,
+'Banbury'    : 3,
+'Didcot'     : 3,
+'Bicester'   : 3,
+'Wantage'    : 3,
+'Cumnor'     : 3,
+'MCS/B'      : 3,
+'Abingdon'   : 3,
 
 }
 
@@ -29,7 +30,7 @@ teams = [
 
 # Divison 1
 [
-['Oxford University',1,3],
+['University',1,3],
 ['Witney',1,0],
 ['City',1,0],
 ['Cowley',2,3],
@@ -43,7 +44,7 @@ teams = [
 
 [
 ['Bicester',1,0],
-['Oxford University',2,3],
+['University',2,3],
 ['Banbury',2,1],
 ['Wantage',1,1],
 ['Cowley',3,0],
@@ -61,6 +62,7 @@ teams = [
 ['Banbury',3,2],
 ['City',3,0],
 ['Cumnor',2,4],
+['Witney',3,0],
 ['Cowley',5,0],
 ],
 
@@ -68,7 +70,7 @@ teams = [
 
 [
 ['Didcot',4,0],
-['Oxford University',3,3],
+['University',3,3],
 ['Abingdon',1,0],
 ['Witney',4,0],
 ['Bicester',2,0],
@@ -135,7 +137,7 @@ def isFixtureOK ( pdate, pdivision, phomeClub, phomeTeamNumber, pawayClub, paway
 
 # Check that University matches are played in term time
 
-    if  phomeClub == 'Oxford University' or pawayClub == 'Oxford University':
+    if  phomeClub == 'University' or pawayClub == 'University':
            inTermTime = False
            for term in universityTerms:
                start, finish = term
@@ -154,10 +156,10 @@ def isFixtureOK ( pdate, pdivision, phomeClub, phomeTeamNumber, pawayClub, paway
 # Check that the home club isn't exceeding its maximum number of fixtures per night
         
            try:
-              if homeFixturesOnThisDay >= maxHomeMatchesPerClub[phomeClub]:
+              if homeFixturesOnThisDay >= maxConcurrentHomeMatchesPerClub[phomeClub]:
                  return False
            except KeyError:
-               print("No maxHomeMatchesPerClub for",phomeClub,file=sys.stderr)
+               print("No maxConcurrentHomeMatchesPerClub for",phomeClub,file=sys.stderr)
                sys.exit(2)
 
 # Check that there isn't already a Cowley home fixtures on this day
@@ -166,30 +168,56 @@ def isFixtureOK ( pdate, pdivision, phomeClub, phomeTeamNumber, pawayClub, paway
            if 14 < pdate.day < 22 and homeFixturesOnThisDay >= 1:
               return False
 
-        if fdate is not None:
+        if fdate is not None:    # i.e. a fixture has already been scheduled
+
            fweek = fdate.isocalendar()[1]
 
            if pweek == fweek:
 
-# Check if home club already has a home fixture in this week
+# Check if home team already has a home fixture in this week
+# Exclude the University, because of their short terms
         
-              if phomeClub == fhomeClub and phomeTeamNumber == fhomeTeamNumber:
+              if phomeClub == fawayClub and phomeClub != 'University' and phomeTeamNumber == fawayTeamNumber:
                  return False
 
-# Check if home club already has a home fixture in this week
+# Check if away team already has a home fixture in this week
+# Exclude the University, because of their short terms
         
-              if phomeClub == fawayClub and phomeTeamNumber == fawayTeamNumber:
+              if pawayClub == fhomeClub and pawayClub != 'University' and pawayTeamNumber == fhomeTeamNumber:
                  return False
 
-# Check if away club already has a home fixture in this week
-        
-              if pawayClub == fhomeClub and pawayTeamNumber == fhomeTeamNumber:
-                 return False
-
-# Check if home club already has a home fixture in this week
+# Check if home team already has a home fixture in this week
         
               if pawayClub == fawayClub and pawayTeamNumber == fawayTeamNumber:
                  return False
+
+           if pdate == fdate:
+
+# Check if home team already has a home fixture on this day
+        
+              if (phomeClub == fhomeClub and phomeTeamNumber == fhomeTeamNumber) or phomeClub == fawayClub and phomeTeamNumber == fawayTeamNumber:
+                 return False
+
+# Check if away team already has a home fixture on this day
+        
+              if (pawayClub == fhomeClub and pawayTeamNumber == fhomeTeamNumber) or pawayClub == fawayClub and pawayTeamNumber == fawayTeamNumber:
+                 return False
+
+# Check if home team already has an adjacent team playing on this day
+
+              if phomeClub == 'Witney':       
+                 if phomeClub == fhomeClub and abs( phomeTeamNumber - fhomeTeamNumber ) == 1:
+                    return False
+
+                 if phomeClub == fawayClub and abs( phomeTeamNumber - fawayTeamNumber ) == 1:
+                    return False
+
+              if pawayClub == 'Witney':       
+                 if pawayClub == fhomeClub and abs( pawayTeamNumber - fhomeTeamNumber ) == 1:
+                    return False
+
+                 if pawayClub == fawayClub and abs( pawayTeamNumber - fawayTeamNumber ) == 1:
+                    return False
 
     return True
 
@@ -261,7 +289,7 @@ def attemptFixtures():
              seasonLength = (lastDateofHalf - firstDateOfHalf).days
 
              fixtureOK = False;
-             for attempt in range(1,100):
+             for attempt in range(1,150):
                 candidateDate = firstDateOfHalf + timedelta((homeClubNight - firstDayOfHalf) % 7)
                 if homeClub != awayClub: 
                    # Add a random shift of a whole number of weeks

@@ -66,6 +66,8 @@ teams = [
 excludedDays = [
 date(2019,4,8),        # Peter Well's Simultaneous
 date(2019,2,4),        # Kidlington Hangover
+date(2019,4,22),       # Easter Bank Holiday 
+date(2019,4,22),       # Cowley Blitz 
 ]
 
 universityTerms = [

@@ -10,17 +10,17 @@ import sys
 
 maxConcurrentHomeMatchesPerClub = {
 
-'University' : 2,
-'Witney'     : 2,
-'City'       : 2,
-'Cowley'     : 2,
-'Banbury'    : 2,
-'Didcot'     : 2,
-'Bicester'   : 2,
-'Wantage'    : 2,
-'Cumnor'     : 2,
-'MCS/B'      : 2,
-'Abingdon'   : 2,
+'University' : 3,
+'Witney'     : 3,
+'City'       : 3,
+'Cowley'     : 3,
+'Banbury'    : 3,
+'Didcot'     : 3,
+'Bicester'   : 3,
+'Wantage'    : 3,
+'Cumnor'     : 3,
+'MCS/B'      : 3,
+'Abingdon'   : 3,
 
 }
 
@@ -28,7 +28,7 @@ maxConcurrentHomeMatchesPerClub = {
 
 teams = [    
 
-# Divison 1
+# Division 1
 [
 ['University',1,3],
 ['Witney',1,0],
@@ -94,14 +94,13 @@ availablePeriods = {
 
 'Abingdon' : [
 [ date(2018,9,4), date(2018,12,14) ],     # Michaelmas
-[ date(2019,1,8), date(2018,3,29) ],      # Lent
-[ date(2018,4,24), date(2018,7,5) ],      # Summer
-[ date(2016,4,24), date(2020,7,5) ],      # Anyime - for debugging only
+[ date(2019,1,8), date(2019,3,29) ],      # Lent
+[ date(2019,4,24), date(2019,7,5) ],      # Summer
 ],
 
 'University' : [
 [ date(2018,10,14), date(2018,11,24) ],   # Michaelmas:  2nd to 7th week
-[ date(2019,1,14), date(2019,3,10) ],     # Hilary:      1st to 8th week
+[ date(2019,1,13), date(2019,3,9) ],      # Hilary:      1st to 8th week
 [ date(2019,4,28), date(2019,6,15) ],     # Trinity:     1st to 7th week
 ],
 
@@ -144,34 +143,30 @@ def isFixtureOK ( pdate, pdivision, phomeClub, phomeTeamNumber, pawayClub, paway
     if pweek in globalExcludedWeeks:
        return False
 
-# Check that home team is playing in allowed period
+# Check that home team is playing in a their  allowed period
 
     inAllowedPeriod = False
     try:
-        for periods in availablePeriods[phomeClub]:
-            start, finish = periods
-            #print(phomeClub,pdate,start,finish)
+        for period in availablePeriods[phomeClub]:
+            start, finish = period
             if start <= pdate <= finish:
                inAllowedPeriod = True
     except KeyError:
        inAllowedPeriod = True        # No list of allowed periods so assume all dates possible
     if not inAllowedPeriod:
-       #print("denied")
        return False
 
-# Check that away team is playing in allowed period
+# Check that away team is playing in their allowed period
 
     inAllowedPeriod = False
     try:
-        for periods in availablePeriods[pawayClub]:
-            start, finish = periods
-            #print(pawayClub,pdate,start,finish)
+        for period in availablePeriods[pawayClub]:
+            start, finish = period
             if start <= pdate <= finish:
                inAllowedPeriod = True
     except KeyError:
        inAllowedPeriod = True        # No list of allowed periods so assume all dates possible
     if not inAllowedPeriod:
-       #print("denied")
        return False
     
 
@@ -203,21 +198,28 @@ def isFixtureOK ( pdate, pdivision, phomeClub, phomeTeamNumber, pawayClub, paway
 
            if pweek == fweek:
 
-# Check if home team already has a home fixture in this week
+# Check if proposed home team already has a home fixture in this week
+# Exclude the University, because of their short terms
+        
+              if phomeClub == fhomeClub and phomeClub != 'University' and phomeTeamNumber == fhomeTeamNumber:
+                 return False
+
+# Check if proposed home team already has a away fixture in this week
 # Exclude the University, because of their short terms
         
               if phomeClub == fawayClub and phomeClub != 'University' and phomeTeamNumber == fawayTeamNumber:
                  return False
 
-# Check if away team already has a home fixture in this week
+# Check if proposed away team already has a home ixture in this week
 # Exclude the University, because of their short terms
         
               if pawayClub == fhomeClub and pawayClub != 'University' and pawayTeamNumber == fhomeTeamNumber:
                  return False
 
-# Check if home team already has a home fixture in this week
+# Check if proposed away team already has an away fixture in this week
+# Exclude the University, because of their short terms
         
-              if pawayClub == fawayClub and pawayTeamNumber == fawayTeamNumber:
+              if pawayClub == fawayClub and pawayClub != 'University' and pawayTeamNumber == fawayTeamNumber:
                  return False
 
            if pdate == fdate:
@@ -233,6 +235,7 @@ def isFixtureOK ( pdate, pdivision, phomeClub, phomeTeamNumber, pawayClub, paway
                  return False
 
 # Check if home team already has an adjacent team playing on this day
+# Witney only
 
               if phomeClub == 'Witney':       
                  if phomeClub == fhomeClub and abs( phomeTeamNumber - fhomeTeamNumber ) == 1:
@@ -240,6 +243,9 @@ def isFixtureOK ( pdate, pdivision, phomeClub, phomeTeamNumber, pawayClub, paway
 
                  if phomeClub == fawayClub and abs( phomeTeamNumber - fawayTeamNumber ) == 1:
                     return False
+
+# Check if away team already has an adjacent team playing on this day
+# Witney only
 
               if pawayClub == 'Witney':       
                  if pawayClub == fhomeClub and abs( pawayTeamNumber - fhomeTeamNumber ) == 1:

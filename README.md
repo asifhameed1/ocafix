@@ -15,13 +15,14 @@ The code is wriiten in Python3 and uses standard libraries.
 4. Teams in the same division play each other twice; once at home and once away
 5. Teams do not play each other twice during the same half of the season
 6. Teams from the same club play each other at the beginning of the season halves
-7. No team plays more than one match in the same week
+7. No team plays more than one match in the same week (except for the University)
 8. No fixtures scheduled for the day after Kidlington
 9. No fixtures scheduled for the day after The Witney Congress
+9. No fixtures scheduled for Easter Bank Holiday
 10. No fixtures scheduled for the day of the Peter Well's simultaneous event
 11. No fixtures scheduled for the day of the Cowley Blitz
 12. Fixtures between teams from the same club are scheduled at the begining of each half of the season
-13. All University matches are scheduled in term time
-14. Clubs do not have more than a specified number of fixtures at home on the same day (currently 3 for all clubs)
+13. no matches to be scheduled outside ranges specified for clubs. Currently Abingdon School terms and University terms, excluding Michaelmas 1st week for initial preparation and Michaelmas and Trinity 8th week for exams.
+14. Clubs do not have more than a specified number of fixtures at home on the same day (currently 2 for all clubs)
 15. Cowley does not have more than 1 fixtures at home on the third Monday of the month
 16. Witney does not have adjacent teams playing on the same night

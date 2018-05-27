@@ -10,17 +10,17 @@ import sys
 
 maxConcurrentHomeMatchesPerClub = {
 
-'University' : 3,
-'Witney'     : 3,
-'City'       : 3,
-'Cowley'     : 3,
-'Banbury'    : 3,
-'Didcot'     : 3,
-'Bicester'   : 3,
-'Wantage'    : 3,
-'Cumnor'     : 3,
-'MCS/B'      : 3,
-'Abingdon'   : 3,
+'University' : 2,
+'Witney'     : 2,
+'City'       : 2,
+'Cowley'     : 2,
+'Banbury'    : 2,
+'Didcot'     : 2,
+'Bicester'   : 2,
+'Wantage'    : 2,
+'Cumnor'     : 2,
+'MCS/B'      : 2,
+'Abingdon'   : 2,
 
 }
 
@@ -90,13 +90,22 @@ date(2019,4,22),       # Easter Bank Holiday
 date(2019,4,22),       # Cowley Blitz 
 ]
 
-universityTerms = [
+availablePeriods = {
 
-[ date(2018,10,7), date(2018,12,1) ],   # Michaelmas
-[ date(2019,1,13), date(2019,3,9) ],    # Hilary
-[ date(2019,4,28), date(2019,6,22) ],   # Trinity
+'Abingdon' : [
+[ date(2018,9,4), date(2018,12,14) ],     # Michaelmas
+[ date(2019,1,8), date(2018,3,29) ],      # Lent
+[ date(2018,4,24), date(2018,7,5) ],      # Summer
+[ date(2016,4,24), date(2020,7,5) ],      # Anyime - for debugging only
+],
 
-]
+'University' : [
+[ date(2018,10,14), date(2018,11,24) ],   # Michaelmas:  2nd to 7th week
+[ date(2019,1,14), date(2019,3,10) ],     # Hilary:      1st to 8th week
+[ date(2019,4,28), date(2019,6,15) ],     # Trinity:     1st to 7th week
+],
+
+}
 
 # Weeks with the following days in them will be excluded from fixtures for everyone
 
@@ -110,10 +119,12 @@ globalExcludedWeeks = [
 # Define the two halves of the season
 
 firstDateOfFirstHalf=date(2018,10,8)
+firstDateOfFirstHalf=date(2018,10,1)
 lastDateOfFirstHalf=date(2018,12,21)
 
 firstDateOfSecondHalf=date(2019,1,7)
 lastDateOfSecondHalf=date(2019,5,30)
+lastDateOfSecondHalf=date(2019,5,16)
 
 fixtures = []
 fixtureDate = {}  # key is homeClub.HomeTeamNumber.awayClub.awayTeamNumber
@@ -135,16 +146,36 @@ def isFixtureOK ( pdate, pdivision, phomeClub, phomeTeamNumber, pawayClub, paway
     if pweek in globalExcludedWeeks:
        return False
 
-# Check that University matches are played in term time
+# Check that home team is playing in allowed period
 
-    if  phomeClub == 'University' or pawayClub == 'University':
-           inTermTime = False
-           for term in universityTerms:
-               start, finish = term
-               if start <= pdate <= finish:
-                  inTermTime = True
-           if not inTermTime:
-              return False;
+    inAllowedPeriod = False
+    try:
+        for periods in availablePeriods[phomeClub]:
+            start, finish = periods
+            #print(phomeClub,pdate,start,finish)
+            if start <= pdate <= finish:
+               inAllowedPeriod = True
+    except KeyError:
+       inAllowedPeriod = True        # No list of allowed periods so assume all dates possible
+    if not inAllowedPeriod:
+       #print("denied")
+       return False
+
+# Check that away team is playing in allowed period
+
+    inAllowedPeriod = False
+    try:
+        for periods in availablePeriods[pawayClub]:
+            start, finish = periods
+            #print(pawayClub,pdate,start,finish)
+            if start <= pdate <= finish:
+               inAllowedPeriod = True
+    except KeyError:
+       inAllowedPeriod = True        # No list of allowed periods so assume all dates possible
+    if not inAllowedPeriod:
+       #print("denied")
+       return False
+    
 
     for fixture in fixtures:
         fdiv, fhomeClub, fhomeTeamNumber, fawayClub, fawayTeamNumber,fhomeClubNight = fixture

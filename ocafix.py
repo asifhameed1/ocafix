@@ -83,9 +83,10 @@ teams = [
 # Following days will be excluded from fixtures for everyone
 
 globalExcludedDays = [
-date(2019,4,8),        # Peter Well's Simultaneous
+date(2019,4,8),        # Peter Wells' Simultaneous
 date(2019,2,4),        # Kidlington Tournament Hangover
 date(2018,11,5),       # Witney Weekend Congress Hangover
+date(2018,4,18),       # Maunday Thursday
 date(2019,4,22),       # Easter Bank Holiday 
 date(2019,4,22),       # Cowley Blitz 
 ]

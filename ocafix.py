@@ -118,12 +118,10 @@ globalExcludedWeeks = [
 
 # Define the two halves of the season
 
-firstDateOfFirstHalf=date(2018,10,8)
 firstDateOfFirstHalf=date(2018,10,1)
 lastDateOfFirstHalf=date(2018,12,21)
 
 firstDateOfSecondHalf=date(2019,1,7)
-lastDateOfSecondHalf=date(2019,5,30)
 lastDateOfSecondHalf=date(2019,5,16)
 
 fixtures = []

@@ -6,6 +6,23 @@ import random
 import sys
 
 
+maxHomeMatchesPerClub = {
+
+'Oxford University' : 2,
+'Witney' : 3,
+'City' : 2,
+'Cowley' : 2,
+'Witney' : 2,
+'Banbury' : 2,
+'Didcot' : 2,
+'Bicester' : 2,
+'Wantage' : 2,
+'Cumnor' : 2,
+'MCS/B' : 3,
+'Abingdon' : 2,
+
+}
+
 # Club,TeamNumber,Division,Match Night (Monday=0)
 
 teams = [    
@@ -61,11 +78,12 @@ teams = [
 
 ]
 
-# Following days will be excluded from fixtures
+# Following days will be excluded from fixtures for everyone
 
-excludedDays = [
+globalExcludedDays = [
 date(2019,4,8),        # Peter Well's Simultaneous
-date(2019,2,4),        # Kidlington Hangover
+date(2019,2,4),        # Kidlington Tournament Hangover
+date(2018,11,5),       # Witney Weekend Congress Hangover
 date(2019,4,22),       # Easter Bank Holiday 
 date(2019,4,22),       # Cowley Blitz 
 ]
@@ -78,9 +96,9 @@ universityTerms = [
 
 ]
 
-# Weeks with the following days in them will be excluded from fixtures
+# Weeks with the following days in them will be excluded from fixtures for everyone
 
-excludedWeeks = [
+globalExcludedWeeks = [
 #date(2019,4,1).isocalendar()[1],
 #date(2019,4,8).isocalendar()[1],
 #date(2019,4,15).isocalendar()[1],
@@ -103,16 +121,16 @@ fixtureDate = {}  # key is homeClub.HomeTeamNumber.awayClub.awayTeamNumber
 def isFixtureOK ( pdate, pdivision, phomeClub, phomeTeamNumber, pawayClub, pawayTeamNumber,phomeClubNight):
 
     pweek = pdate.isocalendar()[1]
-    cowleyHomeFixturesOnThisDay = 0
+    homeFixturesOnThisDay = 0
 
 # Check that proposed fixture is not an excluded day
 
-    if pdate in excludedDays:
+    if pdate in globalExcludedDays:
        return False
 
 # Check that proposed fixture is not in an excluded week
 
-    if pweek in excludedWeeks:
+    if pweek in globalExcludedWeeks:
        return False
 
 # Check that University matches are played in term time
@@ -130,18 +148,22 @@ def isFixtureOK ( pdate, pdivision, phomeClub, phomeTeamNumber, pawayClub, paway
         fdiv, fhomeClub, fhomeTeamNumber, fawayClub, fawayTeamNumber,fhomeClubNight = fixture
         fdate = fixtureDate[fhomeClub + str(fhomeTeamNumber) + fawayClub + str(fawayTeamNumber)]
 
-        if fhomeClub == 'Cowley' and fdate == pdate:
-           cowleyHomeFixturesOnThisDay += 1
+        if fhomeClub == phomeClub and fdate == pdate:
+           homeFixturesOnThisDay += 1
 
-# Check that there aren't already three Cowley home fixtures on this day
+# Check that the home club isn't exceeding its maximum number of fixtures per night
         
-           if cowleyHomeFixturesOnThisDay >= 3:
-              return False
+           try:
+              if homeFixturesOnThisDay >= maxHomeMatchesPerClub[phomeClub]:
+                 return False
+           except KeyError:
+               print("No maxHomeMatchesPerClub for",phomeClub,file=sys.stderr)
+               sys.exit(2)
 
 # Check that there isn't already a Cowley home fixtures on this day
 # if it is the third Monday of the week (Stamp Club clash)
         
-           if 14 < pdate.day < 22 and cowleyHomeFixturesOnThisDay >= 1:
+           if 14 < pdate.day < 22 and homeFixturesOnThisDay >= 1:
               return False
 
         if fdate is not None:
@@ -272,8 +294,10 @@ def main():
            print(fdate.strftime('%Y-%m-%d (%a)') +" " + fdiv + " " + fhomeClub + str(fhomeTeamNumber)\
                   + " v " + fawayClub + str(fawayTeamNumber))
        pickle.dump( [fixtures,fixtureDate] , open( "fixtures.pickle", "wb" ) )
+       sys.exit(0)
     else:
-       print("Failed to find a solution",file=sys.stderr)
+       print("Unable to find a solution",file=sys.stderr)
+       sys.exit(1)
 
 #---------------------------------------------------------------------------------------
 

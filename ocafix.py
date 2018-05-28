@@ -136,6 +136,8 @@ lastDateOfFirstHalf=date(2018,12,21)
 firstDateOfSecondHalf=date(2019,1,7)
 lastDateOfSecondHalf=date(2019,5,16)
 
+bestScore = 99999
+
 fixtures = []
 fixtureDate = {}  # key is homeClub.HomeTeamNumber.awayClub.awayTeamNumber
 
@@ -265,26 +267,6 @@ def isFixtureOK ( pdate, pdivision, phomeClub, phomeTeamNumber, pawayClub, paway
               if (pawayClub == fhomeClub and pawayTeamNumber == fhomeTeamNumber) or pawayClub == fawayClub and pawayTeamNumber == fawayTeamNumber:
                  return False
 
-# Check if home team already has an adjacent team playing on this day
-# Witney only
-
-              if phomeClub == 'Witney':       
-                 if phomeClub == fhomeClub and abs( phomeTeamNumber - fhomeTeamNumber ) == 1:
-                    return False
-
-                 if phomeClub == fawayClub and abs( phomeTeamNumber - fawayTeamNumber ) == 1:
-                    return False
-
-# Check if away team already has an adjacent team playing on this day
-# Witney only
-
-              if pawayClub == 'Witney':       
-                 if pawayClub == fhomeClub and abs( pawayTeamNumber - fhomeTeamNumber ) == 1:
-                    return False
-
-                 if pawayClub == fawayClub and abs( pawayTeamNumber - fawayTeamNumber ) == 1:
-                    return False
-
     return True
 
 #---------------------------------------------------------------------------------------
@@ -379,23 +361,97 @@ def attemptFixtures():
 
 #---------------------------------------------------------------------------------------
 
+def rateSimulation():
+
+    score = 0
+
+    for fixture in fixtures:
+        div, homeClub, homeTeamNumber, awayClub, awayTeamNumber,homeClubNight = fixture
+        fdate = fixtureDate[homeClub + str(homeTeamNumber) + awayClub + str(awayTeamNumber)]
+
+        for lfixture in fixtures:
+
+            ldiv, lhomeClub, lhomeTeamNumber, lawayClub, lawayTeamNumber,lhomeClubNight = lfixture
+            ldate = fixtureDate[homeClub + str(homeTeamNumber) + awayClub + str(awayTeamNumber)]
+
+            scoreForHomeTeamThisFixture = scoreForAwayTeamThisFixture = 0
+            if fdate == ldate:
+               if homeClub == lhomeClub and abs( homeTeamNumber - lhomeTeamNumber ) == 1:
+                  scoreForHomeTeamThisFixture =  scoreForHomeTeamThisFixture * 3 + 1
+
+               if homeClub == lawayClub and abs( homeTeamNumber - lawayTeamNumber ) == 1:
+                  scoreForHomeTeamThisFixture =  scoreForHomeTeamThisFixture * 3 + 1
+
+# Check if away team already has an adjacent team playing on this day
+
+               if awayClub == lhomeClub and abs( awayTeamNumber - lhomeTeamNumber ) == 1:
+                  scoreForAwayTeamThisFixture =  scoreForAwayTeamThisFixture * 3 + 1
+
+               if awayClub == lawayClub and abs( awayTeamNumber - lawayTeamNumber ) == 1:
+                  scoreForAwayTeamThisFixture =  scoreForAwayTeamThisFixture * 3 + 1
+
+            score += scoreForHomeTeamThisFixture + scoreForAwayTeamThisFixture
+
+        return score
+
+#---------------------------------------------------------------------------------------
+
+def trySimulation(count):
+
+   global bestScore
+
+   for j in range(0,10000):
+       fillFixtures()
+       itWorked = attemptFixtures()
+       if itWorked:
+          break
+
+   if itWorked:
+      score = rateSimulation()
+      if score < bestScore:
+         bestScore = score
+         pickle.dump( [fixtures,fixtureDate] , open( "fixtures.pickle", "wb" ) )
+
+   if itWorked:
+      return True
+   return False
+
+#---------------------------------------------------------------------------------------
+
+def printFixtureList():
+
+    try:
+        data = pickle.load(open( "fixtures.pickle", "rb" ))
+        fixtures, fixtureDate = data
+
+        outputs = []
+        for fixture in fixtures:
+            fdiv, fhomeClub, fhomeTeamNumber, fawayClub, fawayTeamNumber,fhomeClubNight = fixture
+            fdate = fixtureDate[fhomeClub + str(fhomeTeamNumber) + fawayClub + str(fawayTeamNumber)]
+            outputs.append((fdate.strftime('%Y-%m-%d (%a)') +" " + fdiv + " " + fhomeClub + str(fhomeTeamNumber)\
+                   + " v " + fawayClub + str(fawayTeamNumber)))
+        outputs.sort()
+        for output in outputs:
+            print(output)
+    except FileNotFoundError:
+        print("ERROR: Pickle file not found",file=sys.stderr)
+
+#---------------------------------------------------------------------------------------
+
 def main():
-    for j in range(0,10000):
-        fillFixtures()
-        itWorked = attemptFixtures()
-        if itWorked:
-           break
-    if itWorked:
-       for fixture in fixtures:
-           fdiv, fhomeClub, fhomeTeamNumber, fawayClub, fawayTeamNumber,fhomeClubNight = fixture
-           fdate = fixtureDate[fhomeClub + str(fhomeTeamNumber) + fawayClub + str(fawayTeamNumber)]
-           print(fdate.strftime('%Y-%m-%d (%a)') +" " + fdiv + " " + fhomeClub + str(fhomeTeamNumber)\
-                  + " v " + fawayClub + str(fawayTeamNumber))
-       pickle.dump( [fixtures,fixtureDate] , open( "fixtures.pickle", "wb" ) )
-       sys.exit(0)
-    else:
-       print("Unable to find a solution",file=sys.stderr)
-       sys.exit(1)
+
+       solutionFound = False
+       for j in range(1,20):
+           if trySimulation(j):
+              solutionFound = True
+
+       if solutionFound:
+          printFixtureList()
+          sys.exit(0)
+
+       else:
+          print("Unable to find a solution",file=sys.stderr)
+          sys.exit(1)
 
 #---------------------------------------------------------------------------------------
 

@@ -5,7 +5,7 @@ Monte-Carlo simulations until it finds a fixture list that meets the constraints
 then written to stdout.  A python pickle file (fixtures.pickle) is also created so that further analysis
 can be undertaken.
 
-The code is wriiten in Python3 and uses standard libraries.
+The code is written in Python3 and uses standard libraries.
 
 ## Current constraints
 

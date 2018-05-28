@@ -25,4 +25,4 @@ The code is wriiten in Python3 and uses standard libraries.
 13. No matches to be scheduled outside ranges specified for clubs. Currently Abingdon School terms and University terms, excluding Michaelmas 1st week for initial preparation and Trinity 5th to 8th week for exams.
 14. Clubs do not have more than a specified number of fixtures at home on the same day (currently 2 for all clubs, except Cowley which has too many teams, so the limit is raised to 3)
 15. Cowley does not have more than 1 fixtures at home on the third Monday of the month to avoid clash with Stamp Club.
-16. Witney does not have adjacent teams playing on the same night.
+16. The number of teams that have adjacent teams playing on the same night is minimized.

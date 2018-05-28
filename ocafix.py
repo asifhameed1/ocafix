@@ -10,17 +10,17 @@ import sys
 
 maxConcurrentHomeMatchesPerClub = {
 
-'University' : 3,
-'Witney'     : 3,
-'City'       : 3,
+'University' : 2,
+'Witney'     : 2,
+'City'       : 2,
 'Cowley'     : 3,
-'Banbury'    : 3,
-'Didcot'     : 3,
-'Bicester'   : 3,
-'Wantage'    : 3,
-'Cumnor'     : 3,
-'MCS/B'      : 3,
-'Abingdon'   : 3,
+'Banbury'    : 2,
+'Didcot'     : 2,
+'Bicester'   : 2,
+'Wantage'    : 2,
+'Cumnor'     : 2,
+'MCS/B'      : 2,
+'Abingdon'   : 2,
 
 }
 
@@ -80,16 +80,28 @@ teams = [
 
 ]
 
+# Following clubs will be scheduled as early in the season as possible
+
+clubsForEarlyScheduling = [
+'University'
+]
+
 # Following days will be excluded from fixtures for everyone
 
 globalExcludedDays = [
 date(2019,4,8),        # Peter Wells' Simultaneous
 date(2019,2,4),        # Kidlington Tournament Hangover
 date(2018,11,5),       # Witney Weekend Congress Hangover
-date(2019,4,18),       # Maunday Thursday
 date(2019,4,22),       # Easter Bank Holiday 
 date(2019,4,22),       # Cowley Blitz 
 ]
+
+# Following days will be excluded from fixtures for specific teams
+teamExcludedDays = {
+'Cowley2'     : [
+date(2019,4,18),       # Maunday Thursday
+]
+}
 
 availablePeriods = {
 
@@ -100,9 +112,9 @@ availablePeriods = {
 ],
 
 'University' : [
-[ date(2018,10,14), date(2018,11,24) ],   # Michaelmas:  2nd to 7th week
+[ date(2018,10,14), date(2018,12,1) ],    # Michaelmas:  2nd to 7th week
 [ date(2019,1,13), date(2019,3,9) ],      # Hilary:      1st to 8th week
-[ date(2019,4,28), date(2019,6,15) ],     # Trinity:     1st to 7th week
+[ date(2019,4,28), date(2019,5,26) ],     # Trinity:     1st to 4th week
 ],
 
 }
@@ -144,7 +156,7 @@ def isFixtureOK ( pdate, pdivision, phomeClub, phomeTeamNumber, pawayClub, paway
     if pweek in globalExcludedWeeks:
        return False
 
-# Check that home team is playing in a their  allowed period
+# Check that home team is playing in a their allowed period
 
     inAllowedPeriod = False
     try:
@@ -170,6 +182,24 @@ def isFixtureOK ( pdate, pdivision, phomeClub, phomeTeamNumber, pawayClub, paway
     if not inAllowedPeriod:
        return False
     
+
+# Check if date is excluded for the home team
+
+    try:
+        for excludedDate in teamExcludedDays[phomeClub + str(phomeTeamNumber)]:
+            if pdate == excludedDate:
+               return False
+    except KeyError:
+        pass
+
+# Check if date is excluded for the away team
+
+    try:
+        for excludedDate in teamExcludedDays[pawayClub + str(pawayTeamNumber)]:
+            if pdate == excludedDate:
+               return False
+    except KeyError:
+        pass
 
     for fixture in fixtures:
         fdiv, fhomeClub, fhomeTeamNumber, fawayClub, fawayTeamNumber,fhomeClubNight = fixture
@@ -283,7 +313,7 @@ def fillFixtures():
 # If the fixture is between two teams from the same club, put them at the beginning
 # of the list so that they can be scheduled for the start of the season halves.
 
-# Find the inter club fixtures
+# Find the inter-club fixtures
 
    interClubFixtures = []
    for fixture in fixtures:
@@ -291,7 +321,7 @@ def fillFixtures():
        if homeClub == awayClub:
           interClubFixtures.append(fixture)
 
-# Then put the inter club fixtures at the top of the fixture list
+# Then put the inter-club fixtures at the top of the fixture list
 
    for fixture in interClubFixtures:
        fixtures.remove(fixture)
@@ -325,19 +355,23 @@ def attemptFixtures():
              seasonLength = (lastDateofHalf - firstDateOfHalf).days
 
              fixtureOK = False;
-             for attempt in range(1,150):
-                candidateDate = firstDateOfHalf + timedelta((homeClubNight - firstDayOfHalf) % 7)
-                if homeClub != awayClub: 
-                   # Add a random shift of a whole number of weeks
-                   randomWeekShift = 7 * int(random.randint(0,seasonLength - 7) / 7) 
-                   candidateDate += timedelta(randomWeekShift)
 
-                fixtureOK = isFixtureOK ( candidateDate, fdiv, homeClub, homeTeamNumber, awayClub, \
-                                          awayTeamNumber,homeClubNight )
-                if fixtureOK:
-                   break 
+# Try random dates in an attempt to spread the fixtures evenly through the available times
+
              if not fixtureOK:
-                return False
+                for attempt in range(1,150):
+                   candidateDate = firstDateOfHalf + timedelta((homeClubNight - firstDayOfHalf) % 7)
+                   if homeClub != awayClub: 
+                      # Add a random shift of a whole number of weeks
+                      randomWeekShift = 7 * int(random.randint(0,seasonLength - 7) / 7) 
+                      candidateDate += timedelta(randomWeekShift)
+
+                   fixtureOK = isFixtureOK ( candidateDate, fdiv, homeClub, homeTeamNumber, awayClub, \
+                                             awayTeamNumber,homeClubNight )
+                   if fixtureOK:
+                      break 
+                if not fixtureOK:
+                   return False
         
              fixtureDate[homeClub + str(homeTeamNumber) + awayClub + str(awayTeamNumber)] = candidateDate
 

@@ -4,6 +4,8 @@
 # Author David.Robson
 # 2018-05-24 Created
 #
+# This version is for running in Jupyter Notebooks only
+#
 # The number of simulations to be undertaken is supplied by an argument.
 # The default is one.
 #######################################################################
@@ -466,7 +468,7 @@ def printFixtureList():
 
 def main():
 
-       numberOfSimulations = 1
+       numberOfSimulations = 50
        
        solutionFound = False
        for j in range(0, numberOfSimulations):

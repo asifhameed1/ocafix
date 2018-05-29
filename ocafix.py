@@ -203,6 +203,8 @@ def isFixtureOK ( pdate, pdivision, phomeClub, phomeTeamNumber, pawayClub, paway
     except KeyError:
         pass
 
+    bicester1AtHomeOnThisDay  = False
+
     for fixture in fixtures:
         fdiv, fhomeClub, fhomeTeamNumber, fawayClub, fawayTeamNumber,fhomeClubNight = fixture
         fdate = fixtureDate[fhomeClub + str(fhomeTeamNumber) + fawayClub + str(fawayTeamNumber)]
@@ -227,8 +229,12 @@ def isFixtureOK ( pdate, pdivision, phomeClub, phomeTeamNumber, pawayClub, paway
 
         if fdate is not None:    # i.e. a fixture has already been scheduled
 
-           fweek = fdate.isocalendar()[1]
 
+#--------------------------------------------------
+#          Examine fixtures happening on this day
+#--------------------------------------------------
+
+           fweek = fdate.isocalendar()[1]
            if pweek == fweek:
 
 # Check if proposed home team already has a home fixture in this week
@@ -254,6 +260,10 @@ def isFixtureOK ( pdate, pdivision, phomeClub, phomeTeamNumber, pawayClub, paway
         
               if pawayClub == fawayClub and pawayClub != 'University' and pawayTeamNumber == fawayTeamNumber:
                  return False
+
+#--------------------------------------------------
+#          Examine fixtures happening on this day
+#--------------------------------------------------
 
            if pdate == fdate:
 
@@ -361,7 +371,7 @@ def attemptFixtures():
 
 #---------------------------------------------------------------------------------------
 
-def rateSimulation():
+def scoreSimulation():
 
     score = 0
 
@@ -369,12 +379,14 @@ def rateSimulation():
         div, homeClub, homeTeamNumber, awayClub, awayTeamNumber,homeClubNight = fixture
         fdate = fixtureDate[homeClub + str(homeTeamNumber) + awayClub + str(awayTeamNumber)]
 
+
         for lfixture in fixtures:
 
             ldiv, lhomeClub, lhomeTeamNumber, lawayClub, lawayTeamNumber,lhomeClubNight = lfixture
-            ldate = fixtureDate[homeClub + str(homeTeamNumber) + awayClub + str(awayTeamNumber)]
+            ldate = fixtureDate[lhomeClub + str(lhomeTeamNumber) + lawayClub + str(lawayTeamNumber)]
 
             scoreForHomeTeamThisFixture = scoreForAwayTeamThisFixture = 0
+
             if fdate == ldate:
                if homeClub == lhomeClub and abs( homeTeamNumber - lhomeTeamNumber ) == 1:
                   scoreForHomeTeamThisFixture =  scoreForHomeTeamThisFixture * 3 + 1
@@ -382,7 +394,7 @@ def rateSimulation():
                if homeClub == lawayClub and abs( homeTeamNumber - lawayTeamNumber ) == 1:
                   scoreForHomeTeamThisFixture =  scoreForHomeTeamThisFixture * 3 + 1
 
-# Check if away team already has an adjacent team playing on this day
+# Increase score if away team already has an adjacent team playing on this day
 
                if awayClub == lhomeClub and abs( awayTeamNumber - lhomeTeamNumber ) == 1:
                   scoreForAwayTeamThisFixture =  scoreForAwayTeamThisFixture * 3 + 1
@@ -390,9 +402,14 @@ def rateSimulation():
                if awayClub == lawayClub and abs( awayTeamNumber - lawayTeamNumber ) == 1:
                   scoreForAwayTeamThisFixture =  scoreForAwayTeamThisFixture * 3 + 1
 
+# Decrease score if Bicester teams are playing home matches on the same day
+
+               if homeClub == 'Bicester' and lhomeClub == 'Bicester' and homeTeamNumber != lhomeTeamNumber:
+                  score -= 20
+
             score += scoreForHomeTeamThisFixture + scoreForAwayTeamThisFixture
 
-        return score
+    return score
 
 #---------------------------------------------------------------------------------------
 
@@ -407,7 +424,7 @@ def trySimulation(count):
           break
 
    if itWorked:
-      score = rateSimulation()
+      score = scoreSimulation()
       if score < bestScore:
          bestScore = score
          pickle.dump( [fixtures,fixtureDate] , open( "fixtures.pickle", "wb" ) )
@@ -435,13 +452,14 @@ def printFixtureList():
             print(output)
     except FileNotFoundError:
         print("ERROR: Pickle file not found",file=sys.stderr)
+        pass
 
 #---------------------------------------------------------------------------------------
 
 def main():
 
        solutionFound = False
-       for j in range(1,20):
+       for j in range(1,50):
            if trySimulation(j):
               solutionFound = True
 

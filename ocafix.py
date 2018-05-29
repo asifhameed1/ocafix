@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 
+#######################################################################
 # Author David.Robson
 # 2018-05-24 Created
+#
+# The number of simulations to be undertaken is supplied by an argument.
+# The default is one.
+#######################################################################
 
 from datetime import date,timedelta
 import pickle
@@ -352,7 +357,7 @@ def attemptFixtures():
 # Try random dates in an attempt to spread the fixtures evenly through the available times
 
              if not fixtureOK:
-                for attempt in range(1,150):
+                for attempt in range(0,150):
                    candidateDate = firstDateOfHalf + timedelta((homeClubNight - firstDayOfHalf) % 7)
                    if homeClub != awayClub: 
                       # Add a random shift of a whole number of weeks
@@ -459,10 +464,18 @@ def printFixtureList():
 
 #---------------------------------------------------------------------------------------
 
-def main():
+def main(argv):
 
+       numberOfSimulations = 50
+       if len(argv) > 1:
+          try:
+             numberOfSimulations = int(argv[1])
+          except ValueError:
+             print ("Argument", argv[1], "is not a valid number of simulations", file=sys.stderr)
+             sys.exit(2)
+       
        solutionFound = False
-       for j in range(1,50):
+       for j in range(0, numberOfSimulations):
            if trySimulation(j):
               solutionFound = True
 
@@ -477,4 +490,4 @@ def main():
 #---------------------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    main()
+    main( sys.argv)

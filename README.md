@@ -1,11 +1,31 @@
 # ocafix
 
+## Introduction
+
 ocafix is a tool to schedule OCA fixtures.  After the initial parameters are defined, it then performs
 Monte-Carlo simulations until it finds a fixture list that meets the constraints.  The fixtures are
 then written to stdout.  A python pickle file (fixtures.pickle) is also created so that further analysis
 can be undertaken.
 
 The code is written in Python3 and uses standard libraries.
+
+## Running Instructions
+
+### On a local machine
+
+Check out this repository and change directory to its contents,  Then run
+
+                              python3 ocafix.py  N
+                              
+where N is the number of simulations to be evaluated.
+
+### In a web browser
+
+Go to https://mybinder.org/v2/gh/DavidWRobson/ocafix/master
+
+Click on the ocafix.ipynb link
+
+Click on the area saying "run -i 'ocafix.py'"  This will make sure it is highlighted (there will be a coloured line on the side), and then just click "Run"  The numerical argument is the number of simulations to be evaluated.
 
 ## Current constraints
 

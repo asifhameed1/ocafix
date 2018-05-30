@@ -29,58 +29,63 @@ maxConcurrentHomeMatchesPerClub = {
 
 }
 
+Monday    = 0
+Tuesday   = 1
+Wednesday = 2
+Thursday  = 3
+
 # Club,TeamNumber,Division,Match Night (Monday=0)
 
 teams = [    
 
 # Division 1
 [
-['University',1,3],
-['Witney',1,0],
-['City',1,0],
-['Cowley',2,3],
-['Witney',2,0],
-['Banbury',1,1],
-['Didcot',1,2],
-['Cowley',1,0],
+['University', 1, Thursday],
+['Witney',     1, Monday],
+['City',       1, Monday],
+['Cowley',     2, Thursday],
+['Witney',     2, Monday],
+['Banbury',    1, Tuesday],
+['Didcot',     1, Wednesday],
+['Cowley',     1, Monday],
 ],
 
 # Division 2
 
 [
-['Bicester',1,0],
-['University',2,3],
-['Banbury',2,1],
-['Wantage',1,1],
-['Cowley',3,0],
-['Cumnor',1,3],
-['City',2,0],
-['Cowley',4,0],
+['Bicester',   1, Monday],
+['University', 2, Thursday],
+['Banbury',    2, Tuesday],
+['Wantage',    1, Tuesday],
+['Cowley',     3, Monday],
+['Cumnor',     1, Thursday],
+['City',       2, Monday],
+['Cowley',     4, Monday],
 ],
 
 # Division 3
 
 [
-['Didcot',2,2],
-['MCS/B',1,0],
-['Didcot',3,2],
-['Banbury',3,2],
-['City',3,0],
-['Cumnor',2,4],
-['Witney',3,0],
-['Cowley',5,0],
+['Didcot',     2, Wednesday],
+['MCS/B',      1, Monday],
+['Didcot',     3, Wednesday],
+['Banbury',    3, Tuesday],
+['City',       3, Monday],
+['Cumnor',     2, Thursday],
+['Witney',     3, Monday],
+['Cowley',     5, Monday],
 ],
 
 # Division 4
 
 [
-['Didcot',4,0],
-['University',3,3],
-['Abingdon',1,0],
-['Witney',4,0],
-['Bicester',2,0],
-['Wantage',2,0],
-['Cowley',6,3],
+['Didcot',     4, Monday],
+['University', 3, Thursday],
+['Abingdon',   1, Monday],
+['Witney',     4, Monday],
+['Bicester',   2, Monday],
+['Wantage',    2, Tuesday],
+['Cowley',     6, Thursday],
 ],
 
 ]
@@ -97,6 +102,7 @@ globalExcludedDays = [
 date(2019,4,8),        # Peter Wells' Simultaneous
 date(2019,2,4),        # Kidlington Tournament Hangover
 date(2018,11,5),       # Witney Weekend Congress Hangover
+date(2019,4,19),       # Good Friday
 date(2019,4,22),       # Easter Bank Holiday 
 date(2019,4,22),       # Cowley Blitz 
 ]

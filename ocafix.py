@@ -260,7 +260,7 @@ def isFixtureOK ( pdate, pdivision, phomeClub, phomeTeamNumber, pawayClub, paway
               if phomeClub == fawayClub and phomeClub != 'University' and phomeTeamNumber == fawayTeamNumber:
                  return False
 
-# Check if proposed away team already has a home ixture in this week
+# Check if proposed away team already has a home fixture in this week
 # Exclude the University, because of their short terms
         
               if pawayClub == fhomeClub and pawayClub != 'University' and pawayTeamNumber == fhomeTeamNumber:
@@ -400,11 +400,15 @@ def scoreSimulation():
             scoreForHomeTeamThisFixture = scoreForAwayTeamThisFixture = 0
 
             if fdate == ldate:
+
+# Increase score if home team already has an adjacent team playing on this day
+
                if homeClub == lhomeClub and abs( homeTeamNumber - lhomeTeamNumber ) == 1:
                   scoreForHomeTeamThisFixture =  scoreForHomeTeamThisFixture * 3 + 1
 
                if homeClub == lawayClub and abs( homeTeamNumber - lawayTeamNumber ) == 1:
                   scoreForHomeTeamThisFixture =  scoreForHomeTeamThisFixture * 3 + 1
+
 
 # Increase score if away team already has an adjacent team playing on this day
 
@@ -417,7 +421,7 @@ def scoreSimulation():
 # Decrease score if Bicester teams are playing home matches on the same day
 
                if homeClub == 'Bicester' and lhomeClub == 'Bicester' and homeTeamNumber != lhomeTeamNumber:
-                  score -= 20
+                  score -= 10
 
             score += scoreForHomeTeamThisFixture + scoreForAwayTeamThisFixture
 

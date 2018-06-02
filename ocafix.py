@@ -46,7 +46,7 @@ teams = [
 ['Cowley',     2, Thursday],
 ['Witney',     2, Monday],
 ['Banbury',    1, Tuesday],
-['Didcot',     1, Wednesday],
+['Didcot',     1, Monday],
 ['Cowley',     1, Monday],
 ],
 
@@ -66,7 +66,7 @@ teams = [
 # Division 3
 
 [
-['Didcot',     2, Wednesday],
+['Didcot',     2, Monday],
 ['MCS/B',      1, Monday],
 ['Didcot',     3, Wednesday],
 ['Banbury',    3, Tuesday],

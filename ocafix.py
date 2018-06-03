@@ -235,7 +235,7 @@ def isFixtureOK ( pdate, pdivision, phomeClub, phomeTeamNumber, pawayClub, paway
 # Check that there isn't already a Cowley home fixtures on this day
 # if it is the third Monday of the week (Stamp Club clash)
         
-           if 14 < pdate.day < 22 and homeFixturesOnThisDay >= 1:
+           if phomeClub == 'Cowley' and 14 < pdate.day < 22 and homeFixturesOnThisDay >= 1:
               return False
 
         if fdate is not None:    # i.e. a fixture has already been scheduled

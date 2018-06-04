@@ -242,7 +242,7 @@ def isFixtureOK ( pdate, pdivision, phomeClub, phomeTeamNumber, pawayClub, paway
 
 
 #--------------------------------------------------
-#          Examine fixtures happening on this day
+#          Examine fixtures happening in this week
 #--------------------------------------------------
 
            fweek = fdate.isocalendar()[1]

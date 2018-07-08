@@ -104,7 +104,7 @@ date(2019,2,4),        # Kidlington Tournament Hangover
 date(2018,11,5),       # Witney Weekend Congress Hangover
 date(2019,4,19),       # Good Friday
 date(2019,4,22),       # Easter Bank Holiday 
-date(2019,4,22),       # Cowley Blitz 
+date(2018,12,03),       # Cowley xmas Blitz 
 ]
 
 # Following days will be excluded from fixtures for specific teams

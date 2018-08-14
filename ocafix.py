@@ -60,7 +60,7 @@ teams = [
 ['Cowley',     3, Monday],
 ['Cumnor',     1, Thursday],
 ['City',       2, Monday],
-['Cowley',     4, Monday],
+['Cowley',     4, Thursday],
 ],
 
 # Division 3

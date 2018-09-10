@@ -53,7 +53,7 @@ teams = [
 # Division 2
 
 [
-['Bicester',   1, Monday],
+['Bicester',   1, Tuesday],
 ['University', 2, Thursday],
 ['Banbury',    2, Tuesday],
 ['Wantage',    1, Tuesday],

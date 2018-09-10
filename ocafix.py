@@ -83,7 +83,7 @@ teams = [
 ['University', 3, Thursday],
 ['Abingdon',   1, Monday],
 ['Witney',     4, Monday],
-['Bicester',   2, Monday],
+['Bicester',   2, Tuesday],
 ['Wantage',    2, Tuesday],
 ['Cowley',     6, Thursday],
 ],

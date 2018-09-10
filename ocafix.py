@@ -18,7 +18,7 @@ maxConcurrentHomeMatchesPerClub = {
 'University' : 2,
 'Witney'     : 2,
 'City'       : 2,
-'Cowley'     : 3,
+'Cowley'     : 2,
 'Banbury'    : 2,
 'Didcot'     : 2,
 'Bicester'   : 2,

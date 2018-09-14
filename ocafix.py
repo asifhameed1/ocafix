@@ -46,7 +46,7 @@ teams = [
 ['Cowley',     2, Thursday],
 ['Witney',     2, Monday],
 ['Banbury',    1, Tuesday],
-['Didcot',     1, Monday],
+['Didcot',     1, Wednesday],
 ['Cowley',     1, Monday],
 ],
 

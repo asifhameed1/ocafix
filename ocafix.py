@@ -113,9 +113,44 @@ date(2019,4,22),       # Cowley Blitz
 
 # Following days will be excluded from fixtures for specific teams
 teamExcludedDays = {
-'Cowley2'     : [
-date(2019,4,18),       # Maunday Thursday
-]
+    
+  'Cowley2'     : [
+      date(2019,4,18),       # Maunday Thursday
+   ],
+   'Banbury1'   : [
+       date(2018,10,9),       # Leamington Leagure clashes
+       date(2018,10,10),      # Leamington Leagure clashes
+       date(2018,10,22),      # Leamington Leagure clashes
+       date(2018,10,30),      # Leamington Leagure clashes
+       date(2018,11,5),       # Leamington Leagure clashes
+       date(2018,11,6),       # Leamington Leagure clashes
+       date(2018,11,20),      # Leamington Leagure clashes
+       date(2018,11,28),      # Leamington Leagure clashes
+       date(2018,12,3),       # Leamington Leagure clashes
+       date(2018,12,12),      # Leamington Leagure clashes
+       date(2018,12,18),      # Leamington Leagure clashes
+   ],
+   'Banbury2'   : [
+       date(2018,10,10),      # Leamington Leagure clashes
+       date(2018,10,17),      # Leamington Leagure clashes
+       date(2018,10,30),      # Leamington Leagure clashes
+       date(2018,11,5),       # Leamington Leagure clashes
+       date(2018,11,13),      # Leamington Leagure clashes
+       date(2018,11,20),      # Leamington Leagure clashes
+       date(2018,11,27),      # Leamington Leagure clashes
+       date(2018,12,3),       # Leamington Leagure clashes
+       date(2018,12,10),      # Leamington Leagure clashes
+       date(2018,12,18),      # Leamington Leagure clashes
+   ],
+   'Banbury3'   : [
+       date(2018,10,10),      # Leamington Leagure clashes
+       date(2018,10,17),      # Leamington Leagure clashes
+       date(2018,11,13),      # Leamington Leagure clashes
+       date(2018,11,20),      # Leamington Leagure clashes
+       date(2018,11,27),      # Leamington Leagure clashes
+       date(2018,12,10),      # Leamington Leagure clashes
+   ],
+
 }
 
 availablePeriods = {

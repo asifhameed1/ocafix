@@ -118,94 +118,94 @@ teamExcludedDays = {
       date(2019,4,18),       # Maunday Thursday
    ],
    'Banbury1'   : [
-       date(2018,09,11),      # Leamington Leagure clashes
-       date(2018,09,18),      # Leamington Leagure clashes
-       date(2018,09,26),      # Leamington Leagure clashes
-       date(2018,10,09),      # Leamington Leagure clashes
+       date(2018,9,11),       # Leamington Leagure clashes
+       date(2018,9,18),       # Leamington Leagure clashes
+       date(2018,9,26),       # Leamington Leagure clashes
+       date(2018,10,9),       # Leamington Leagure clashes
        date(2018,10,10),      # Leamington Leagure clashes
        date(2018,10,22),      # Leamington Leagure clashes
        date(2018,10,30),      # Leamington Leagure clashes
-       date(2018,11,05),      # Leamington Leagure clashes
-       date(2018,11,06),      # Leamington Leagure clashes
+       date(2018,11,5),       # Leamington Leagure clashes
+       date(2018,11,6),       # Leamington Leagure clashes
        date(2018,11,20),      # Leamington Leagure clashes
        date(2018,11,28),      # Leamington Leagure clashes
-       date(2018,12,03),      # Leamington Leagure clashes
+       date(2018,12,3),       # Leamington Leagure clashes
        date(2018,12,18),      # Leamington Leagure clashes
-       date(2019,01,07),      # Leamington Leagure clashes
-       date(2019,01,08),      # Leamington Leagure clashes
-       date(2019,01,14),      # Leamington Leagure clashes
-       date(2019,01,22),      # Leamington Leagure clashes
-       date(2019,02,05),      # Leamington Leagure clashes
-       date(2019,02,26),      # Leamington Leagure clashes
-       date(2019,03,19),      # Leamington Leagure clashes
-       date(2019,03,26),      # Leamington Leagure clashes
-       date(2019,04,02),      # Leamington Leagure clashes
-       date(2019,04,09),      # Leamington Leagure clashes
-       date(2019,04,10),      # Leamington Leagure clashes
-       date(2019,04,15),      # Leamington Leagure clashes
-       date(2019,04,16),      # Leamington Leagure clashes
-       date(2019,05,01),      # Leamington Leagure clashes
-       date(2019,05,07),      # Leamington Leagure clashes
+       date(2019,1,7),       # Leamington Leagure clashes
+       date(2019,1,8),       # Leamington Leagure clashes
+       date(2019,1,14),      # Leamington Leagure clashes
+       date(2019,1,22),      # Leamington Leagure clashes
+       date(2019,2,5),       # Leamington Leagure clashes
+       date(2019,2,26),      # Leamington Leagure clashes
+       date(2019,3,19),      # Leamington Leagure clashes
+       date(2019,3,26),      # Leamington Leagure clashes
+       date(2019,4,2),       # Leamington Leagure clashes
+       date(2019,4,9),       # Leamington Leagure clashes
+       date(2019,4,10),      # Leamington Leagure clashes
+       date(2019,4,15),      # Leamington Leagure clashes
+       date(2019,4,16),      # Leamington Leagure clashes
+       date(2019,5,1),       # Leamington Leagure clashes
+       date(2019,5,7),       # Leamington Leagure clashes
    ],
    'Banbury2'   : [
-       date(2018,09,11),      # Leamington Leagure clashes
-       date(2018,09,18),      # Leamington Leagure clashes
-       date(2018,09,26),      # Leamington Leagure clashes
+       date(2018,9,11),       # Leamington Leagure clashes
+       date(2018,9,18),       # Leamington Leagure clashes
+       date(2018,9,26),       # Leamington Leagure clashes
        date(2018,10,10),      # Leamington Leagure clashes
        date(2018,10,17),      # Leamington Leagure clashes
        date(2018,10,30),      # Leamington Leagure clashes
-       date(2018,11,05),      # Leamington Leagure clashes
+       date(2018,11,5),       # Leamington Leagure clashes
        date(2018,11,13),      # Leamington Leagure clashes
        date(2018,11,20),      # Leamington Leagure clashes
        date(2018,11,27),      # Leamington Leagure clashes
-       date(2018,12,03),      # Leamington Leagure clashes
-       date(2018,12,04),      # Leamington Leagure clashes
+       date(2018,12,3),       # Leamington Leagure clashes
+       date(2018,12,4),       # Leamington Leagure clashes
        date(2018,12,10),      # Leamington Leagure clashes
        date(2018,12,18),      # Leamington Leagure clashes
-       date(2019,01,08),      # Leamington Leagure clashes
-       date(2019,01,14),      # Leamington Leagure clashes
-       date(2019,01,22),      # Leamington Leagure clashes
-       date(2019,02,04),      # Leamington Leagure clashes
-       date(2019,02,11),      # Leamington Leagure clashes
-       date(2019,02,19),      # Leamington Leagure clashes
-       date(2019,02,25),      # Leamington Leagure clashes
-       date(2019,02,26),      # Leamington Leagure clashes
-       date(2019,03,05),      # Leamington Leagure clashes
-       date(2019,03,19),      # Leamington Leagure clashes
-       date(2019,03,26),      # Leamington Leagure clashes
-       date(2019,04,09),      # Leamington Leagure clashes
-       date(2019,04,16),      # Leamington Leagure clashes
-       date(2019,05,01),      # Leamington Leagure clashes
-       date(2019,05,07),      # Leamington Leagure clashes
+       date(2019,1,8),        # Leamington Leagure clashes
+       date(2019,1,14),       # Leamington Leagure clashes
+       date(2019,1,22),       # Leamington Leagure clashes
+       date(2019,2,4),        # Leamington Leagure clashes
+       date(2019,2,11),       # Leamington Leagure clashes
+       date(2019,2,19),       # Leamington Leagure clashes
+       date(2019,2,25),       # Leamington Leagure clashes
+       date(2019,2,26),       # Leamington Leagure clashes
+       date(2019,3,5),        # Leamington Leagure clashes
+       date(2019,3,19),       # Leamington Leagure clashes
+       date(2019,3,26),       # Leamington Leagure clashes
+       date(2019,4,9),        # Leamington Leagure clashes
+       date(2019,4,16),       # Leamington Leagure clashes
+       date(2019,5,1),        # Leamington Leagure clashes
+       date(2019,5,7),        # Leamington Leagure clashes
    ],
    'Banbury3'   : [
-       date(2018,09,11),      # Leamington Leagure clashes
-       date(2018,10,02),      # Leamington Leagure clashes
+       date(2018,9,11),       # Leamington Leagure clashes
+       date(2018,10,2),       # Leamington Leagure clashes
        date(2018,10,10),      # Leamington Leagure clashes
        date(2018,10,17),      # Leamington Leagure clashes
        date(2018,11,13),      # Leamington Leagure clashes
        date(2018,11,20),      # Leamington Leagure clashes
        date(2018,11,27),      # Leamington Leagure clashes
-       date(2018,12,04),      # Leamington Leagure clashes
+       date(2018,12,4),       # Leamington Leagure clashes
        date(2018,12,10),      # Leamington Leagure clashes
-       date(2019,01,08),      # Leamington Leagure clashes
-       date(2019,01,09),      # Leamington Leagure clashes
-       date(2019,01,23),      # Leamington Leagure clashes
-       date(2019,01,28),      # Leamington Leagure clashes
-       date(2019,02,04),      # Leamington Leagure clashes
-       date(2019,02,05),      # Leamington Leagure clashes
-       date(2019,02,11),      # Leamington Leagure clashes
-       date(2019,02,12),      # Leamington Leagure clashes
-       date(2019,02,19),      # Leamington Leagure clashes
-       date(2019,02,25),      # Leamington Leagure clashes
-       date(2019,02,26),      # Leamington Leagure clashes
-       date(2019,03,05),      # Leamington Leagure clashes
-       date(2019,03,12),      # Leamington Leagure clashes
-       date(2019,03,19),      # Leamington Leagure clashes
-       date(2019,03,27),      # Leamington Leagure clashes
-       date(2019,04,03),      # Leamington Leagure clashes
-       date(2019,05,01),      # Leamington Leagure clashes
-       date(2019,05,07),      # Leamington Leagure clashes
+       date(2019,1,8),        # Leamington Leagure clashes
+       date(2019,1,9),        # Leamington Leagure clashes
+       date(2019,1,23),       # Leamington Leagure clashes
+       date(2019,1,28),       # Leamington Leagure clashes
+       date(2019,2,4),        # Leamington Leagure clashes
+       date(2019,2,5),        # Leamington Leagure clashes
+       date(2019,2,11),       # Leamington Leagure clashes
+       date(2019,2,12),       # Leamington Leagure clashes
+       date(2019,2,19),       # Leamington Leagure clashes
+       date(2019,2,25),       # Leamington Leagure clashes
+       date(2019,2,26),       # Leamington Leagure clashes
+       date(2019,3,5),        # Leamington Leagure clashes
+       date(2019,3,12),       # Leamington Leagure clashes
+       date(2019,3,19),       # Leamington Leagure clashes
+       date(2019,3,27),       # Leamington Leagure clashes
+       date(2019,4,3),        # Leamington Leagure clashes
+       date(2019,5,1),        # Leamington Leagure clashes
+       date(2019,5,7),        # Leamington Leagure clashes
    ],
 
 }

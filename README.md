@@ -46,4 +46,14 @@ Click on the area saying "run -i 'ocafix.py'"  This will make sure it is highlig
 14. Clubs do not have more than a specified number of fixtures at home on the same day (currently 2 for all clubs)
 15. Cowley does not have more than 1 fixtures at home on the third Monday of the month to avoid clash with Stamp Club.
 16. The number of teams that have adjacent teams playing on the same night is minimized.
-17. The number of times both Bicester teams play at home on the same night is maximized
+17. The number of times both Bicester teams play at home on the same night is maximize
+18. Cowley Didcot and Witney teams don't have "adjacent" (e.g. Team N and Team N+1) playing on the same night.
+19. The Banbury teams are excluded from playing on the large number of nights in which there are clashes with the LEamington and Warwick leagues,.
+
+## Conversion to a Windows executable
+
+The python program can be built as a standalone windows executable by running the following steps on a Windows machine.  Tested on a Windows 10 machne, will probably work on other versions, also Linux and Mac.
+
+1.  Install PyInstaller with "pip install PyInstaller"
+2.  Convert with pyinstaller.exe -F ocafix.py   (builds ocafix.exe in dist folder)
+3.  Run with ".\dist\ocafix\ocafix.exe"

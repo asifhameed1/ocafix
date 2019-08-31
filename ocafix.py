@@ -148,7 +148,7 @@ availablePeriods = {
 globalExcludedWeeks = [
 #date(2019,12,23).isocalendar()[1],
 #date(2019,12,30).isocalendar()[1],
-#date(2020,1,17).isocalendar()[1],
+#date(2020,12,9).isocalendar()[1],
 #date(2020,4,13).isocalendar()[1],
 ]
 

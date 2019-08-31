@@ -111,21 +111,34 @@ date(2019,12,9),       # Cowley Blitz
 teamExcludedDays = {
 'Cowley2'     : [
 date(2020,4,9),       # Maunday Thursday
+],
+'Banbury1'  : [
+    date(2019,9,12),date(2019,9,16),date(2019,9,26),date(2019,10,3),date(2019,10,7),date(2019,10,17),date(2019,10,24),date(2019,11,6),date(2019,11,12),date(2019,11,28),date(2019,12,16),date(2019,12,18),date(2020,1,9),date(2020,1,16),date(2020,1,22),date(2020,1,27),date(2020,1,28),date(2020,2,6),date(2020,2,13),date(2020,2,17),date(2020,2,18),date(2020,3,19),date(2020,3,23),date(2020,3,26),date(2020,4,2),date(2020,4,9),
+],
+'Banbury2'  : [
+ date(2019,9,12),date(2019,9,26),date(2019,10,7),date(2019,10,15),date(2019,10,24),date(2019,11,12),date(2019,11,21),date(2019,11,28),date(2019,12,3),date(2019,12,12),date(2019,12,18),date(2020,1,9),date(2020,1,13),date(2020,1,28),date(2020,2,6),date(2020,2,13),date(2020,2,18),date(2020,2,27),date(2020,3,19),date(2020,3,23),date(2020,3,25),date(2020,4,2),date(2020,4,7),
+],
+'Banbury3'  : [
+date(2019,9,11),date(2019,9,12),date(2019,9,19),date(2019,9,26),date(2019,10,1),date(2019,10,7),date(2019,10,9),date(2019,10,15),date(2019,10,17),date(2019,10,23),date(2019,10,30),date(2019,10,31),date(2019,11,7),date(2019,11,12),date(2019,11,14),date(2019,11,21),date(2019,12,2),date(2019,12,3),date(2019,12,5),date(2019,12,10),date(2019,12,12),date(2019,12,16),date(2020,1,9),date(2020,1,13),date(2020,1,21),date(2020,1,23),date(2020,1,28),date(2020,2,6),date(2020,2,10),date(2020,2,11),date(2020,2,13),date(2020,2,20),date(2020,2,25),date(2020,2,27),date(2020,3,12),date(2020,3,19),date(2020,3,25),date(2020,3,26),date(2020,4,2),date(2020,4,7),date(2020,4,15),
 ]
+
 }
 
 availablePeriods = {
 
 'Abingdon' : [
-[ date(2018,9,4), date(2018,12,14) ],     # Michaelmas
-[ date(2019,1,8), date(2019,3,29) ],      # Lent
-[ date(2019,4,24), date(2019,7,5) ],      # Summer
+[ date(2019,9,10), date(2019,10,11) ],     # 1st 
+[ date(2019,10,28), date(2019,12,13) ],      # 2nd
+[ date(2020,1,7), date(2020,2,14) ],      # 3rd
+[ date(2020,2,24), date(2020,3,27) ],     # 4th
+[ date(2020,4,21), date(2020,5,22) ],      # 5th
+[ date(2020,6,1), date(2020,7,31) ],      # 6th
 ],
 
 'University' : [
-[ date(2018,10,14), date(2018,12,1) ],    # Michaelmas:  2nd to 7th week
-[ date(2019,1,13), date(2019,3,9) ],      # Hilary:      1st to 8th week
-[ date(2019,4,28), date(2019,5,26) ],     # Trinity:     1st to 4th week
+[ date(2019,10,20), date(2019,12,7) ],    # Michaelmas:  2nd to 7th week
+[ date(2020,1,19), date(2020,3,14) ],      # Hilary:      1st to 8th week
+[ date(2020,4,26), date(2030,6,20) ],     # Trinity:     1st to 4th week
 ],
 
 }
@@ -133,19 +146,19 @@ availablePeriods = {
 # Weeks with the following days in them will be excluded from fixtures for everyone
 
 globalExcludedWeeks = [
-#date(2019,4,1).isocalendar()[1],
-#date(2019,4,8).isocalendar()[1],
-#date(2019,4,15).isocalendar()[1],
-#date(2019,4,22).isocalendar()[1],
+#date(2019,12,23).isocalendar()[1],
+#date(2019,12,30).isocalendar()[1],
+#date(2020,1,17).isocalendar()[1],
+#date(2020,4,13).isocalendar()[1],
 ]
 
 # Define the two halves of the season
 
-firstDateOfFirstHalf=date(2018,10,1)
-lastDateOfFirstHalf=date(2018,12,21)
+firstDateOfFirstHalf=date(2019,9,30)
+lastDateOfFirstHalf=date(2019,12,20)
 
-firstDateOfSecondHalf=date(2019,1,7)
-lastDateOfSecondHalf=date(2019,5,16)
+firstDateOfSecondHalf=date(2020,1,6)
+lastDateOfSecondHalf=date(2020,5,15)
 
 bestScore = 99999
 

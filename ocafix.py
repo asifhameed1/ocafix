@@ -100,7 +100,7 @@ clubsForEarlyScheduling = [
 # Following clubs hve expressed desire that they don't have adjacent teams (e.g. team N and team N+1) playing on the same night.
 #adjacentIssueClubs = ['Witney', 'Didcot', 'Cowley']
 
-adjacentIssueClubs = ['Witney', 'Didcot','Cowley']
+adjacentIssueClubs = ['Witney', 'Didcot']
 
 
 # Following days will be excluded from fixtures for everyone

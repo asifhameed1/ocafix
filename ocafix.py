@@ -22,7 +22,7 @@ maxConcurrentHomeMatchesPerClub = {
 'Banbury'    : 2,
 'Didcot'     : 2,
 'Bicester'   : 2,
-'Wantage'    : 2,
+'Wantage'    : 1,
 'Cumnor'     : 2,
 'MCS/B'      : 2,
 'Abingdon'   : 2,
@@ -44,7 +44,7 @@ teams = [
 ['Witney',     1, Monday],
 ['City',       1, Monday],
 ['Cowley',     2, Thursday],
-['Witney',     2, Monday],
+['Cumnor',     1, Thursday],
 ['Banbury',    1, Tuesday],
 ['Didcot',     1, Monday],
 ['Cowley',     1, Monday],
@@ -53,19 +53,20 @@ teams = [
 # Division 2
 
 [
+['Witney',     2, Monday],
 ['Bicester',   1, Monday],
 ['University', 2, Thursday],
 ['Banbury',    2, Tuesday],
 ['Wantage',    1, Tuesday],
 ['Cowley',     3, Monday],
-['Cumnor',     1, Thursday],
 ['City',       2, Monday],
-['Cowley',     4, Monday],
+
 ],
 
 # Division 3
 
 [
+['Cowley',     4, Monday],
 ['Didcot',     2, Monday],
 ['MCS/B',      1, Monday],
 ['Didcot',     3, Wednesday],

@@ -60,21 +60,20 @@ teams = [
 ['Wantage',    1, Tuesday],
 ['Cowley',     3, Monday],
 ['City',       2, Monday],
-
+['Didcot',     2, Monday],
 ],
 
 # Division 3
 
 [
-['Cowley',     4, Monday],
-['Didcot',     2, Monday],
+['Cowley',     4, Thursday],
 ['MCS/B',      1, Monday],
 ['Didcot',     3, Wednesday],
 ['Banbury',    3, Thursday],
 ['City',       3, Monday],
-['Cumnor',     2, Thursday],
 ['Witney',     3, Monday],
 ['Cowley',     5, Monday],
+['Abingdon',   1, Monday],
 ],
 
 # Division 4
@@ -82,7 +81,7 @@ teams = [
 [
 ['Didcot',     4, Monday],
 ['University', 3, Thursday],
-['Abingdon',   1, Monday],
+['Cumnor',     2, Thursday],
 ['Witney',     4, Monday],
 ['Bicester',   2, Monday],
 ['Wantage',    2, Tuesday],
@@ -100,18 +99,18 @@ clubsForEarlyScheduling = [
 # Following days will be excluded from fixtures for everyone
 
 globalExcludedDays = [
-date(2019,4,8),        # Peter Wells' Simultaneous
-date(2019,2,4),        # Kidlington Tournament Hangover
-date(2018,11,5),       # Witney Weekend Congress Hangover
-date(2019,4,19),       # Good Friday
-date(2019,4,22),       # Easter Bank Holiday 
-date(2019,4,22),       # Cowley Blitz 
+date(2020,4,6),        # Peter Wells' Simultaneous
+date(2020,2,3),        # Kidlington Tournament Hangover
+date(2019,11,4),       # Witney Weekend Congress Hangover
+date(2020,4,10),       # Good Friday
+date(2020,4,13),       # Easter Bank Holiday 
+date(2019,12,9),       # Cowley Blitz 
 ]
 
 # Following days will be excluded from fixtures for specific teams
 teamExcludedDays = {
 'Cowley2'     : [
-date(2019,4,18),       # Maunday Thursday
+date(2020,4,9),       # Maunday Thursday
 ]
 }
 

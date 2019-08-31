@@ -96,6 +96,13 @@ clubsForEarlyScheduling = [
 'University'
 ]
 
+
+# Following clubs hve expressed desire that they don't have adjacent teams (e.g. team N and team N+1) playing on the same night.
+#adjacentIssueClubs = ['Witney', 'Didcot', 'Cowley']
+
+adjacentIssueClubs = ['Witney', 'Didcot','Cowley']
+
+
 # Following days will be excluded from fixtures for everyone
 
 globalExcludedDays = [
@@ -301,6 +308,18 @@ def isFixtureOK ( pdate, pdivision, phomeClub, phomeTeamNumber, pawayClub, paway
               if (pawayClub == fhomeClub and pawayTeamNumber == fhomeTeamNumber) or pawayClub == fawayClub and pawayTeamNumber == fawayTeamNumber:
                  return False
 
+# Ensure that adjacent teams (for clubs who have expressed such a prfeference), don't play on the same night
+# Note, it doesn't look possible to do this for all clubs
+              if  phomeClub in adjacentIssueClubs:
+                 if phomeClub == fhomeClub and abs( phomeTeamNumber - fhomeTeamNumber ) == 1:
+                    return False
+                 if phomeClub == fawayClub and abs( phomeTeamNumber - fawayTeamNumber ) == 1:
+                    return False
+              if  pawayClub in adjacentIssueClubs:
+                 if pawayClub == fhomeClub and abs( pawayTeamNumber - fhomeTeamNumber ) == 1:
+                    return False
+                 if pawayClub == fawayClub and abs( pawayTeamNumber - fawayTeamNumber ) == 1:
+                    return False
     return True
 
 #---------------------------------------------------------------------------------------
